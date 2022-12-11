@@ -1,4 +1,54 @@
-import {tweetsData} from `/data.js`    
+// Importing data from data.js
+import { tweetsData } from '/data.js'
+//importing uuid4 fucntion to generate random uuid
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid'
+
+//add a eventlistener for whole document , when icons clicked , should get the uuid of each of its tweet
+// creating a event function(e)
+document.addEventListener('click',function(e){
+    //if condition to grab element only if it contains value . ignores undefined
+ if (e.target.dataset.likesIcon) { 
+    handleLikesClick(e.target.dataset.likesIcon) // calling function to handle what likes icon does when clicked with uuid as parameter
+ }
+ else if (e.target.dataset.retweetsIcon) {
+     handleRetweetsClick(e.target.dataset.retweetsIcon) // calling function to handle what retweets icon does when clicked with uuid as parameter
+    }
+    else if (e.target.dataset.repliesIcon) {
+        handleRepliesClick(e.target.dataset.repliesIcon) // calling function to handle what replies icon does when clicked with uuid as parameter
+    }
+    else if (e.target.id === 'tweet-btn') {
+        handleTweetButton()
+    }
+})
+
+//function to handle what likes icon does when clicked
+function handleLikesClick(uuidOfTweet) {
+    const targetTweetObj = tweetsData.filter(function(tweetVariable){
+        return tweetVariable.uuid === uuidOfTweet
+    })[0] // to filter the arrays consisting of uuid , since unique array length will be awlays 1 
+    //so filter is with [0] will be index element , in this case , first object in the array
+    
+    // 1. When a tweet is liked, it's 'isLiked' property
+    //    should be set to true.and incremented
+    // 2. When a tweet is unliked, it's 'isLiked' property
+    //    should be set to false and its 'likes' count
+    //    should be decremented.
+    if (targetTweetObj.isLiked) {
+        targetTweetObj.likes--
+} else {
+    targetTweetObj.likes++ 
+ }
+ targetTweetObj.isLiked = !targetTweetObj.isLiked // flipping the boolean value everytime icon is clicked
+ render() // calling render function with updated data in tweetsdata array of objects
+}
+
+//function to handle what retweets icon does when clicked
+function handleRetweetsClick(uuidOfTweet) {
+    const targetTweetObj = tweetsData.filter(function(tweetVariable){
+        return tweetVariable.uuid === uuidOfTweet
+    })[0] // to filter the arrays consisting of uuid , since unique array length will be awlays 1 
+    //so filter is with [0] will be index element , in this case , first object in the array
+    
     // 1. When a tweet is retweeted, it's 'isRetweeted' property
     //    should be set to true.and incremented
     // 2. When a tweet is unretweeted, it's 'isRetweeted' property
