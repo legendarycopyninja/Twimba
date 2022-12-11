@@ -16,6 +16,11 @@ i{
     font-size: 15px;
     cursor: pointer;
 }
+/* overididng the solid color of icons from CDN */
+
+.fa-solid{
+    color: #999;
+}
 
 .liked{
     color: red;
@@ -52,6 +57,7 @@ textarea{
     width: 100%;
     font-size: 20px;
     line-height: 30px;
+    resize: none;
 }
 
 button{

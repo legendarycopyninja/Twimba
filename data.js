@@ -1,3 +1,4 @@
+// Exporting data From here
 export const tweetsData = [   
     {
         handle: `@TrollBot66756542 💎`,
