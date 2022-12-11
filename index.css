@@ -148,3 +148,7 @@ border-radius: 50%;
     text-decoration: none;
     margin: auto;
 }
+
+footer:hover {
+    background-color: bisque;
+}
